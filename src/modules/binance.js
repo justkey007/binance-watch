@@ -83,7 +83,7 @@ export default class Binance extends Bus {
    */
   getSignedUrl( endpoint, params ) {
     let crypto     = window.CryptoJS || null;
-    let recvWindow = 100000;
+    let recvWindow = 50000;
     let timestamp  = Date.now() - ( recvWindow / 2 );
     let qstr       = this._ajax.serializeData( Object.assign( { recvWindow, timestamp }, params ) );
     let signature  = crypto ? crypto.HmacSHA256( qstr, this._apisecret ).toString( crypto.enc.Hex ) : '';
@@ -158,12 +158,11 @@ export default class Binance extends Bus {
     if ( Array.isArray( data ) ) balances = data; // as-is
     if ( Array.isArray( data.balances ) ) balances = data.balances; // http
     if ( Array.isArray( data.B ) ) balances = data.B; // websocket
-
     balances = balances.map( t => {
       let asset  = String( t.a || t.asset || '' );
       let pair   = ( asset === 'BTC' ) ? 'USDT' : 'BTC';
       let route  = '/symbol/'+ asset + pair;
-      let name   = this._names[ asset ] || asset;
+      let name   = (this._names || {})[ asset ] || asset;
       let free   = parseFloat( t.f || t.free ) || 0;
       let locked = parseFloat( t.l || t.locked ) || 0;
       let total  = ( free + locked );

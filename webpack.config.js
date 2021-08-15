@@ -11,7 +11,7 @@ const serverHost = '0.0.0.0';
 const serverPort = 8000;
 const serverRoot = path.join( __dirname, '/' );
 const appEntry   = './src/app.js';
-const bundleDir  = './public/bundles/';
+const bundleDir  = './dist/';
 const globalSass = './src/scss/globals.scss';
 
 // get loader config based on env

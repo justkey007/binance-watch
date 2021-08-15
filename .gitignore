@@ -4,6 +4,7 @@
 assets/
 node_modules/
 src/cli.js
+dist
 
 npm-debug.log
 yarn-error.log

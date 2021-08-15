@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "serve": "serve -n . -p 8008"
   },
   "browserslist": [
     "> 1%",
@@ -14,6 +15,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
+    "serve": "^12.0.0",
     "vue": "^2.5.22"
   },
   "devDependencies": {
